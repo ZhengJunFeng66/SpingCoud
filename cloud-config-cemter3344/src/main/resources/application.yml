@@ -1,0 +1,22 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-cemter
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+        health-check-critical-timeout: 1s
+        health-check-interval: 1s
+      host: localhost
+      port: 8500
+    config:
+      server:
+        git:
+          uri: https://gitee.com/zhengjunfeng6/spring-cloud-config.git
+          search-paths:  SpringCloud-Config
+          username: 507557192@qq.com
+          password: hj.12345
+      label: master
