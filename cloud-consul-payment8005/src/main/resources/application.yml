@@ -1,0 +1,40 @@
+server:
+  port: 8005
+spring:
+  application:
+    name: cloud-consul-payment
+  cloud:
+    consul:
+      port: 8500
+      host: localhost
+      discovery:
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+        deregister: true
+        health-check-critical-timeout: 1s
+        health-check-interval: 1s
+  datasource:
+    #    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    #    minPoolSize: 2
+    #    maxPoolSize: 10
+    #    maxIdleTime: 1800000
+    #    acquireIncrement: 3
+    #    maxStatements: 1000
+    #    initialPoolSize: 3
+    #    idleConnectionTestPeriod: 60
+    #    acquireRetryAttempts: 30
+    #    acquireRetryDelay: 1000
+    #    breakAfterAcquireFailure: false
+    #    testConnectionOnCheckout: false
+    username: root
+    password: lizhen123
+    url: jdbc:mysql://192.168.7.77:3306/school_db?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+    mapper-locations: classpath:Mapper/*.xml
+management:
+    endpoints:
+      enabled-by-default: true
+      web:
+        exposure:
+          include: "*"

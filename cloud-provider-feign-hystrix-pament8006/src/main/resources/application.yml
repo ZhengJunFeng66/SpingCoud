@@ -1,0 +1,16 @@
+server:
+  port: 8006
+spring:
+  application:
+    name: cloud-provider-feign-hystrix-pament
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        deregister: true
+        health-check-critical-timeout: 1s
+        health-check-interval: 1s
+        service-name: ${spring.application.name}
+

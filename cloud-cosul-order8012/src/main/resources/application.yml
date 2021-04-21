@@ -1,0 +1,40 @@
+server:
+  port: 8012
+spring:
+  application:
+    name: cloud-cosul-order
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+      host: localhost
+      port: 8500
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+#  circuitbreaker:
+#    enabled: true
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: THREAD
+#          thread:
+#            timeoutInMilliseconds: 8000
+#        circuitBreaker:
+#          enabled: true
+
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 1000
