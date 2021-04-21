@@ -97,6 +97,7 @@
         <module>cloud-consul-payment8005</module>
         <module>cloud-provider-feign-hystrix-pament8006</module>
         <module>cloud-gateway-service</module>
+        <module>cloud-config-cemter3344</module>
     </modules>
 
 </project>
