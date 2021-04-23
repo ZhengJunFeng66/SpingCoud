@@ -1,0 +1,30 @@
+server:
+  port: 3355
+spring:
+  application:
+    name: cloud-config-client
+  cloud:
+    consul:
+      port: 8500
+      host: localhost
+      discovery:
+        health-check-interval: 1s
+        health-check-critical-timeout: 1s
+        service-name: ${spring.application.name}
+    config:
+      label: master
+      name: ConfigText
+      profile: dev
+      uri: http://localhost:3344
+
+  rabbitmq:
+    port: 5672
+    password: guest
+    username: guest
+    host: localhost
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"

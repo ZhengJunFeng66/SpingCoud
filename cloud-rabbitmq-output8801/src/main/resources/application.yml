@@ -1,0 +1,43 @@
+server:
+  port: 8801
+spring:
+  application:
+    name: cloud-rabbitmq-output
+  cloud:
+
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+        health-check-critical-timeout: 1s
+        health-check-interval: 1s
+        prefer-ip-address: true
+    stream:
+      binders: #设置绑定rabbitmq的服务信息
+        rabbit:  #名称便于bindings整合
+          type: rabbit   #mq类型
+          environment:  #rabbitmq的配置信息
+            spring:
+              rabbitmq:
+                host: localhost
+                username: guest
+                password: guest
+                port: 5672
+                listener:
+                  simple:
+                    concurrency: 1
+                    max-concurrency: 1
+                    prefetch: 1
+      bindings: #服务整合
+        output: #输出提供者
+          destination: studyExchanges #rabbitmq的存储名称
+          content-type: application/json  #发送格式
+          binder: rabbit #绑定mq设置
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
