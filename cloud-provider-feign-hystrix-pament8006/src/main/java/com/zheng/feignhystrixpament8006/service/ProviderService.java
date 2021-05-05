@@ -16,12 +16,12 @@ public class ProviderService {
     }
 
     @HystrixCommand(fallbackMethod = "dom",commandProperties = {
-            @HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS,value = "3000")
+            @HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS,value = "8000")
     })
     public String info_time(){
 
         try {
-            Thread.sleep(6000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

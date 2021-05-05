@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Component
 @FeignClient(value = "cloud-provider-feign-hystrix-pament",fallback = RestService1ImpI.class)
-public interface RestService1 {
+public
+interface RestService1 {
     @RequestMapping("/ddds")
     public String info_ok();
     @RequestMapping("/aaas")

@@ -15,21 +15,21 @@ feign:
   client:
     config:
       default:
-        connectTimeout: 5000
-        readTimeout: 5000
+        connectTimeout: 2000
+        readTimeout: 2000
         loggerLevel: basic
-#  circuitbreaker:
-#    enabled: true
-#hystrix:
-#  command:
-#    default:
-#      execution:
-#        isolation:
-#          strategy: THREAD
-#          thread:
-#            timeoutInMilliseconds: 8000
-#        circuitBreaker:
-#          enabled: true
+  circuitbreaker:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 8000
+        circuitBreaker:
+          enabled: true
 
 #hystrix:
 #  command:

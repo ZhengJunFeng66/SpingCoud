@@ -17,11 +17,11 @@ public class ProviderController {
     }
     @RequestMapping("/aaas")
     public String info_time(){
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return providerService.info_time();
     }
 }

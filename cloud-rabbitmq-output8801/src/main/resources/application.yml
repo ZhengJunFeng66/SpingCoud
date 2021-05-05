@@ -27,8 +27,8 @@ spring:
                 listener:
                   simple:
                     concurrency: 1
-                    max-concurrency: 1
-                    prefetch: 1
+                    max-econcurrency: 1
+                      preftch: 1
       bindings: #服务整合
         output: #输出提供者
           destination: studyExchanges #rabbitmq的存储名称

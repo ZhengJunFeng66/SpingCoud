@@ -33,22 +33,23 @@ public class RestConsulController implements RestCosulApi {
         return null;
     }
 
-    @HystrixCommand(fallbackMethod = "test",commandProperties = {
-            @HystrixProperty(name=HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS,value = "4000"),
-            @HystrixProperty(name = HystrixPropertiesManager.CIRCUIT_BREAKER_ENABLED,value = "true")
-    })
+//    @HystrixCommand(fallbackMethod = "test",commandProperties = {
+//            @HystrixProperty(name=HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS,value = "4000"),
+//            @HystrixProperty(name = HystrixPropertiesManager.CIRCUIT_BREAKER_ENABLED,value = "true")
+//    })
     @GetMapping("/zzzs")
     public String info_ok(){
         return restService1.info_ok();
     }
-    @HystrixCommand(fallbackMethod = "test",commandProperties = {
-            @HystrixProperty(name= HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS,value = "4000"),
-            @HystrixProperty(name = HystrixPropertiesManager.CIRCUIT_BREAKER_ENABLED,value = "true")
-    })
+//    @HystrixCommand(fallbackMethod = "test",commandProperties = {
+//            @HystrixProperty(name= HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS,value = "4000"),
+//            @HystrixProperty(name = HystrixPropertiesManager.CIRCUIT_BREAKER_ENABLED,value = "true")
+//    })
     @GetMapping("/xxxs")
     public String info_time(){
         return restService1.info_time();
     }
+
     public String test(){
         return "错误";
     }
