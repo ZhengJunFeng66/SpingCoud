@@ -18,6 +18,6 @@ public class IMessageProviderImpI implements IMessageProvider {
         String uid= UUID.randomUUID().toString();
         output.send(MessageBuilder.withPayload(uid).build());
         System.out.println(uid);
-        return null;
+        return "成功";
     }
 }

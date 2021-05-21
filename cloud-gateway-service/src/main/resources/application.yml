@@ -3,6 +3,7 @@ server:
 spring:
   application:
     name: cloud-gateway-service
+
   cloud:
     consul:
       port: 8500

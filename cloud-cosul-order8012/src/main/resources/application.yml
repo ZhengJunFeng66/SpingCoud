@@ -1,6 +1,7 @@
 server:
   port: 8012
 spring:
+
   application:
     name: cloud-cosul-order
   cloud:
@@ -19,6 +20,7 @@ feign:
         readTimeout: 2000
         loggerLevel: basic
   circuitbreaker:
+
     enabled: true
 hystrix:
   command:
