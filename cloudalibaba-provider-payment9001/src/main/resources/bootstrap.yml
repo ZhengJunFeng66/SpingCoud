@@ -1,0 +1,48 @@
+server:
+  port: 9001
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.7.122:3306/seata_account
+    password: root
+    username: root
+  profiles:
+    active: dev
+  application:
+    name: cloudalibaba-provider-payment
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.56.1:8848
+        namespace: 63469087-4308-4b97-9e42-a4bb27f8ba60
+      config:
+        server-addr: 192.168.56.1:8848
+        file-extension: yaml
+        prefix: cloudalibaba-provider-payment
+
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+
+
+logging:
+  level:
+    io:
+      seata: info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

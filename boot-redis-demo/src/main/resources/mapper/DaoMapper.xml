@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zheng.springboot.bootredisdemo.dao.StudentDao">
+    <resultMap id="BeanresultMap" type="com.zheng.springboot.bootredisdemo.javabean.StudentBean">
+        <id property="id" column="id"></id>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="phone" property="phone"/>
+        <result column="gid" property="gid"/>
+        <result column="eid" property="eid"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+    <insert id="InsertStudent" parameterType="com.zheng.springboot.bootredisdemo.javabean.StudentBean">
+        INSERT INTO student
+            (id, name, sex, phone, gid, eid, address)
+        VALUES (#{id},
+                #{name},
+                #{sex},
+                #{phone},
+                #{gid},
+                #{eid},
+                #{address})
+    </insert>
+
+    <update id="updateStudent" parameterType="com.zheng.springboot.bootredisdemo.javabean.StudentBean">
+
+        UPDATE student
+        -- set
+        <set>
+            <if test="name !=null and name !=''">
+                name=#{name},
+            </if>
+            <if test="sex !=null and sex !=''">
+                sex=#{sex},
+            </if>
+            <if test="phone !=null and phone !=''">
+                phone=#{phone},
+            </if>
+            <if test="gid !=null and gid !=''">
+                gid=#{gid},
+            </if>
+            <if test="eid !=null and eid !=''">
+                eid=#{eid},
+            </if>
+            <if test="address !=null and address !=''">
+                address=#{address},
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+    <delete id="deleteStudent" parameterType="java.lang.Long">
+        DELETE
+        from student
+        WHERE id = #{id}
+    </delete>
+
+    <select id="getList" resultMap="BeanresultMap">
+        SELECT s.id,
+               s.name,
+               IF(s.sex = 1, '男', '女') AS sex,
+               phone,
+               address,
+               e.name                  as eName,
+               g.name                  as gName
+        FROM student s
+                 LEFT JOIN
+             elective e
+             on e.id = s.eid
+                 LEFT JOIN
+             grade g
+             ON
+                 g.id = s.gid
+    </select>
+
+    <select id="getStudentLists" resultType="com.zheng.springboot.bootredisdemo.javabean.StudentBean">
+        SELECT s.id,
+               s.name                    AS sname,
+               IF
+                   (s.sex = 1, '男', '女') AS sex,
+               phone,
+               address,
+               e.name                    AS eName,
+               g.name                    AS gName
+        FROM student s
+                 LEFT JOIN
+             elective e
+             ON
+                 e.id = s.eid
+                 LEFT JOIN
+             grade g
+             ON
+                 g.id = s.gid
+        WHERE s.name = #{name}
+          AND g.name = #{gName}
+
+    </select>
+
+    <select id="getslist" resultType="com.zheng.springboot.bootredisdemo.javabean.StudentBean">
+        select *
+        from student
+    </select>
+
+    <select id="Count" resultType="java.lang.Integer">
+        select count(*)
+        from student
+    </select>
+
+    <select id="limitList" parameterType="integer" resultType="com.zheng.springboot.bootredisdemo.javabean.StudentBean">
+        SELECT s.id,
+               s.name,
+               IF(s.sex = 1, '男', '女') AS sex,
+               phone,
+               address,
+               e.name                  as eName,
+               g.name                  as gName
+        FROM student s
+                 LEFT JOIN
+        elective e
+        on e.id = s.eid
+                 LEFT JOIN
+        grade g
+        ON
+            g.id = s.gid
+            LIMIT #{page}
+           , #{rows}
+    </select>
+
+
+
+</mapper>
